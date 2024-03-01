@@ -1,20 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float lifetime;
+    [SerializeField] float damage;
+    
     void Start()
     {
-        
+        Invoke("DestroyFireball", lifetime);
     }
-    void Update()
+    void OnCollisionEnter(Collision other)
     {
-        
+        DealDamage(other);
+        DestroyFireball();
     }
     void FixedUpdate() 
     {
+        MoveFixedUpdate();
+    }
+    void MoveFixedUpdate()
+    {
         transform.position += transform.forward * Time.fixedDeltaTime * speed;
+    }
+    void DealDamage(Collision col)
+    {
+        var component = col.gameObject.GetComponent<Health>();
+        if (component != null)
+        {
+            component.ReceiveDamage(damage);
+        }
+    }
+    void DestroyFireball()
+    {
+        Destroy(gameObject);
     }
 }

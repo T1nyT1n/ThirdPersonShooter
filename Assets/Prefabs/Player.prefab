@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2243898921084814071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5505957999075734643}
+  - component: {fileID: 1849897310493028650}
+  m_Layer: 0
+  m_Name: Fireball Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5505957999075734643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243898921084814071}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.833, y: 1.272, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2258735137045013095}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1849897310493028650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243898921084814071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac37fd8a874622f4b8811a9244dadfac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPoint: {fileID: 0}
+  cameraLink: {fileID: 2258735137618765314}
+  targetInSkyDistance: 10
 --- !u!1 &2258735136884956719
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,12 +70,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2258735136884956719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2258735137618765317}
   m_Father: {fileID: 2258735137045013095}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2258735137045013092
 GameObject:
@@ -42,6 +88,7 @@ GameObject:
   - component: {fileID: 2258735137045013095}
   - component: {fileID: 2258735137045013094}
   - component: {fileID: 2258735137045013096}
+  - component: {fileID: 129820144915177542}
   - component: {fileID: 2258735137045013097}
   m_Layer: 0
   m_Name: Player
@@ -62,6 +109,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1788521545613994539}
+  - {fileID: 5505957999075734643}
   - {fileID: 2258735136884956718}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,6 +145,21 @@ MonoBehaviour:
   _gravity: 9.8
   _jumpForce: 7
   _moveSpeed: 8
+--- !u!114 &129820144915177542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258735137045013092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17624e9d357631746a7b751d545d29ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 7503968353050354755, guid: 193845ad2ed08894eb3d19965687e86e,
+    type: 3}
+  fireballSourceTransform: {fileID: 5505957999075734643}
 --- !u!143 &2258735137045013097
 CharacterController:
   m_ObjectHideFlags: 0

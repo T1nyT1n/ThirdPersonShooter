@@ -6,6 +6,10 @@ public class CameraRotation : MonoBehaviour
     [SerializeField] float _rotationSpeed;
     [SerializeField] float _minAngle;
     [SerializeField] float _maxAngle;
+    void Start()
+    {
+        HideCursor();
+    }
     void Update()
     {
         var newAngleY = transform.localEulerAngles.y + Time.deltaTime * _rotationSpeed * Input.GetAxis("Mouse X");
@@ -18,5 +22,10 @@ public class CameraRotation : MonoBehaviour
         }
         newAngleX = Mathf.Clamp(newAngleX, _minAngle, _maxAngle);
         _cameraAxis.localEulerAngles = new Vector3(newAngleX, 0, 0);
+    }
+    void HideCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
