@@ -25,7 +25,7 @@ public class Fireball : MonoBehaviour
     }
     void DealDamage(Collision col)
     {
-        var component = col.gameObject.GetComponent<Health>();
+        var component = col.gameObject.GetComponent<EnemyHealth>();
         if (component != null)
         {
             component.ReceiveDamage(damage);

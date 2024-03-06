@@ -729,6 +729,7 @@ MonoBehaviour:
   - {fileID: 982149177}
   player: {fileID: 622329281}
   viewAngle: 90
+  damage: 5
 --- !u!195 &1054286984
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -743,7 +744,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1512,6 +1513,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3800394382613506032, guid: 05fbb66206ea4934bb14829b3b2eae05,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05fbb66206ea4934bb14829b3b2eae05, type: 3}
 --- !u!1 &1599492302
@@ -1712,12 +1718,12 @@ GameObject:
   - component: {fileID: 1775436742}
   - component: {fileID: 1775436741}
   m_Layer: 0
-  m_Name: Target Point
+  m_Name: Aim Target Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1775436741
 MeshRenderer:
   m_ObjectHideFlags: 0

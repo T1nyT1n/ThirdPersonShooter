@@ -5,10 +5,13 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     NavMeshAgent _navMeshAgent;
+    PlayerHealth _playerHealth;
     [SerializeField] List<Transform> _patrolPoints;
     [SerializeField] PlayerController player;
     [SerializeField] float viewAngle;
+    [SerializeField] float damage;
     bool isPlayerNoticed;
+    
     void Start()
     {
         InitComponentLinks();
@@ -18,12 +21,14 @@ public class EnemyAI : MonoBehaviour
     {
         NoticePlayerUpdate();
         ChaseUpdate();
+        AttackUpdate();
         PatrolUpdate();
     }
     
     void InitComponentLinks()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _playerHealth = player.GetComponent<PlayerHealth>();
     }
     void PickNewPatrolPoint()
     {
@@ -55,9 +60,16 @@ public class EnemyAI : MonoBehaviour
     }
     void PatrolUpdate()
     {
-        if(!isPlayerNoticed && _navMeshAgent.remainingDistance == 0) 
+        if(!isPlayerNoticed && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance) 
         {
             PickNewPatrolPoint();
+        }
+    }
+    void AttackUpdate()
+    {
+        if (isPlayerNoticed && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+        {
+            _playerHealth.ReceiveDamage(damage * Time.deltaTime);
         }
     }
 }
