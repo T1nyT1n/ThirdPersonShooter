@@ -27,10 +27,10 @@ public class PlayerController : MonoBehaviour
     void GetKeysUpdate()
     {
         _moveVector = Vector3.zero;
-        if(Input.GetKey(KeyCode.W)) _moveVector += transform.forward;
-        if (Input.GetKey(KeyCode.S)) _moveVector -= transform.forward;
-        if (Input.GetKey(KeyCode.D)) _moveVector += transform.right;
-        if (Input.GetKey(KeyCode.A)) _moveVector -= transform.right;
+
+        _moveVector.x = Input.GetAxis("Horizontal");
+        _moveVector.z = Input.GetAxis("Vertical");
+        _moveVector = transform.rotation * _moveVector;
     }
     void JumpUpdate()
     {
