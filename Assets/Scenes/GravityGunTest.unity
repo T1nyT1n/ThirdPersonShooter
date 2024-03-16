@@ -587,6 +587,7 @@ GameObject:
   - component: {fileID: 687806701}
   - component: {fileID: 687806700}
   - component: {fileID: 687806704}
+  - component: {fileID: 687806705}
   m_Layer: 0
   m_Name: Throwable
   m_TagString: Untagged
@@ -683,7 +684,19 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!114 &687806705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687806699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87da4d51533a6d4eb96524b98c540d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &727064861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1029,7 @@ GameObject:
   - component: {fileID: 1032022826}
   - component: {fileID: 1032022825}
   - component: {fileID: 1032022824}
+  - component: {fileID: 1032022829}
   m_Layer: 0
   m_Name: Throwable (2)
   m_TagString: Untagged
@@ -1038,7 +1052,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1032022825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1113,6 +1127,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1032022829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032022823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87da4d51533a6d4eb96524b98c540d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1035525006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1152,7 @@ GameObject:
   - component: {fileID: 1035525009}
   - component: {fileID: 1035525008}
   - component: {fileID: 1035525007}
+  - component: {fileID: 1035525012}
   m_Layer: 0
   m_Name: Throwable (1)
   m_TagString: Untagged
@@ -1148,7 +1175,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1035525008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1223,6 +1250,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1035525012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035525006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87da4d51533a6d4eb96524b98c540d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1051450235
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,10 +19,10 @@ public class GravityGun : MonoBehaviour
             {
                 RaycastHit hit;
                 //пускаем луч через центр экрана
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)), out hit))
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.7f, 0)), out hit))
                 {
                     //если луч попал в объект с компонентом Rigidbody
-                    if (hit.rigidbody != null)
+                    if (hit.rigidbody != null && hit.rigidbody.TryGetComponent(out IThrowableObject _))
                     {
                         //фиксируем объект
                         LockOnTarget(hit.rigidbody);
