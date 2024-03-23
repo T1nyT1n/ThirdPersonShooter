@@ -3,19 +3,18 @@
 public class EnemyHealth : MonoBehaviour
 {
     public float value;
-    void Start()
+    private PlayerProgress playerProgress;
+    private void Start()
     {
-        
-    }
-    void Update()
-    {
-        if(value <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        playerProgress = FindObjectOfType<PlayerProgress>();
     }
     public void ReceiveDamage(float damage)
     {
         value -= damage;
+        playerProgress.AddExperience(damage);
+        if(value <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

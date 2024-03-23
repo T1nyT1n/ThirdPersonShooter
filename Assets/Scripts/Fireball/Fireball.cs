@@ -4,7 +4,7 @@ public class Fireball : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float lifetime;
-    [SerializeField] float damage;
+    public float damage;
     
     void Start()
     {
