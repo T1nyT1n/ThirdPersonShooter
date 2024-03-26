@@ -1,26 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FireballSource : MonoBehaviour
 {
-    [SerializeField] Transform targetPoint;
-    [SerializeField] Camera cameraLink;
     [SerializeField] float targetInSkyDistance;
+    private PlayerAim _playerAimComponent;
+    private Transform _targetPoint;
     void Start()
     {
-        
+        _playerAimComponent = GetComponentInParent<PlayerAim>();
+        _targetPoint = _playerAimComponent.GetTargetPoint();
     }
     void Update()
-    {
-        var ray = cameraLink.ViewportPointToRay(new Vector3(0.5f, 0.65f, 0));
+    {   
+        /*
+        var ray = _playerAimComponent.GetCameraRay();
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            targetPoint.position = hit.point;
+            _targetPoint.position = hit.point;
         } else {
-            targetPoint.position = ray.GetPoint(targetInSkyDistance);
+            _targetPoint.position = ray.GetPoint(targetInSkyDistance);
         }
-        transform.LookAt(targetPoint.position);
+        transform.LookAt(_targetPoint.position);
+        */
+        _playerAimComponent.AimToPlayersTargetPoint(transform, targetInSkyDistance);
     }
 }

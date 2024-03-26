@@ -7,6 +7,7 @@ public class PlayerProgress : MonoBehaviour
     [SerializeField] private List<PlayerProgressLevel> _levels;
     [SerializeField] private RectTransform _experienceValueRectTransform;
     [SerializeField] private TextMeshProUGUI _levelValueTMP;
+    [SerializeField] private GameObject newEnemys;
 
     private int _levelValue = 1;
     private float _experienceCurrentValue = 0.0f;
@@ -14,6 +15,7 @@ public class PlayerProgress : MonoBehaviour
     
     private void Start()
     {
+        GetComponent<AbilityController>().enabled = false;
         SetLevel(_levelValue);
         DrawUI();
     }
@@ -23,7 +25,8 @@ public class PlayerProgress : MonoBehaviour
         _experienceCurrentValue += value;
         if (_experienceCurrentValue >= _experienceTargetValue)
         {
-            SetLevel(_levelValue + 1);
+            _levelValue += 1;
+            SetLevel(_levelValue);
             _experienceCurrentValue = 0f;
         }
         DrawUI();
@@ -35,7 +38,17 @@ public class PlayerProgress : MonoBehaviour
         _levelValue = value;
         _experienceTargetValue = currentLevel.experienceForTheNextLevel;
 
-        GetComponent<FireballCaster>().damage = currentLevel.bubbleDamage;
+        GetComponent<FireballCaster>().freezeTime = currentLevel.bubbleFreezeTime;
+        if (currentLevel.abilityAvailable) 
+        {
+            var abilityScript = GetComponent<AbilityController>();
+            abilityScript.enabled = true;
+            abilityScript.ActivateAbilityTimer();
+        }
+        if (_levelValue >= 4)
+        {
+            newEnemys.SetActive(true);
+        }
     }
     private void DrawUI()
     {

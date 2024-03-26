@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class AbilityController : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class AbilityController : MonoBehaviour
     [SerializeField] private float _throwPower = 30.0f;
     [SerializeField] private Transform _raycastPoint;
     [SerializeField] private Camera _camera;
+    [SerializeField] private Transform uiInactiveBackground;
+    [SerializeField] private TextMeshProUGUI uiCooldownTimerText;
 
     private float _timer;
 
@@ -17,6 +20,12 @@ public class AbilityController : MonoBehaviour
         {
             RestoreTimer();
         }
+        DrawUI();
+    }
+
+    public void ActivateAbilityTimer() 
+    {
+        uiCooldownTimerText.gameObject.SetActive(true);
     }
 
     private bool CanApplyAbility()
@@ -72,5 +81,18 @@ public class AbilityController : MonoBehaviour
             return false;
         }
         return hit.rigidbody.TryGetComponent(out throwable);
+    }
+
+    private void DrawUI()
+    {
+        if (!CanApplyAbility())
+        {
+            uiInactiveBackground.gameObject.SetActive(true);
+            var textNumber = _abilityRestoreDuration - _timer;
+            textNumber = Mathf.Round(textNumber * 10.0f) * 0.1f;
+            uiCooldownTimerText.text = textNumber.ToString();
+        } else {
+            uiInactiveBackground.gameObject.SetActive(false);
+        } 
     }
 }

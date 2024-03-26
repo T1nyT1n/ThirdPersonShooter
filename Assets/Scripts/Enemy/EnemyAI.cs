@@ -4,13 +4,13 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    NavMeshAgent _navMeshAgent;
-    PlayerHealth _playerHealth;
+    private NavMeshAgent _navMeshAgent;
+    private PlayerHealth _playerHealth;
     [SerializeField] List<Transform> _patrolPoints;
     [SerializeField] PlayerController player;
     [SerializeField] float viewAngle;
     [SerializeField] float damage;
-    bool isPlayerNoticed;
+    private bool isPlayerNoticed;
     
     void Start()
     {
@@ -66,8 +66,14 @@ public class EnemyAI : MonoBehaviour
         }
     }
     void AttackUpdate()
-    {
-        if (isPlayerNoticed && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+    {   // Проверка через вычисление расстояния до игрока + рэйкаст, чтобы при выходе за NavMesh скрипт не считал, что
+        // враг находится рядом с игроком :D 
+        RaycastHit hit;
+        var direction = player.transform.position - transform.position;
+        bool condition = isPlayerNoticed && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance
+            && Physics.Raycast(transform.position + Vector3.up, direction, out hit, _navMeshAgent.stoppingDistance + 1);
+
+        if (condition)
         {
             _playerHealth.ReceiveDamage(damage * Time.deltaTime);
         }

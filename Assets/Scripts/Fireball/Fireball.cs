@@ -2,34 +2,61 @@
 
 public class Fireball : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] float lifetime;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _lifetime;
     public float damage;
+    public float timeForStopping;
+
+    private EnemyHealth _enemyHealthComponent;
+    private SphereCollider _bubbleCollider;
+    private bool _fireballStopped = false;
     
     void Start()
     {
-        Invoke("DestroyFireball", lifetime);
+        _bubbleCollider = GetComponent<SphereCollider>();   
+        Invoke("DestroyFireball", _lifetime);
     }
     void OnCollisionEnter(Collision other)
     {
-        DealDamage(other);
-        DestroyFireball();
+        GetEnemyComponent(other);
+        if (_enemyHealthComponent != null)
+        {
+            EnemyStopBubble(other);
+        }
     }
     void FixedUpdate() 
     {
         MoveFixedUpdate();
     }
+
     void MoveFixedUpdate()
     {
-        transform.position += transform.forward * Time.fixedDeltaTime * speed;
-    }
-    void DealDamage(Collision col)
-    {
-        var component = col.gameObject.GetComponent<EnemyHealth>();
-        if (component != null)
+        if(!_fireballStopped)
         {
-            component.ReceiveDamage(damage);
+            transform.position += transform.forward * Time.fixedDeltaTime * _speed;
         }
+    }
+    void GetEnemyComponent(Collision col)
+    {
+        _enemyHealthComponent = col.gameObject.GetComponent<EnemyHealth>();
+    }
+    void DealDamage()
+    {
+        _enemyHealthComponent.ReceiveDamage(damage);
+    }
+    void EnemyStopBubble(Collision col)
+    {
+        _enemyHealthComponent.StopEnemy(timeForStopping);
+        
+        CancelInvoke();
+        _fireballStopped = true;
+        Invoke("DestroyFireball", timeForStopping);
+
+        _bubbleCollider.enabled = false;
+        
+        transform.SetParent(_enemyHealthComponent.transform);
+        transform.localPosition = Vector3.up;
+        transform.localScale = new Vector3(1f, 2f, 1f);
     }
     void DestroyFireball()
     {

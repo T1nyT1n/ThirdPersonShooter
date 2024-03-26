@@ -2,7 +2,8 @@
 
 [Serializable] public class PlayerProgressLevel
 {
-    public float bubbleDamage;
-    public float boxDamage;
+    public float bubbleFreezeTime;
+    public float boxDamageMultiplier;
+    public bool abilityAvailable;
     public float experienceForTheNextLevel;
 }
